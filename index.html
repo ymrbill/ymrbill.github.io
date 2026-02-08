@@ -1,20 +1,331 @@
-<!doctype html>
-<html dir="ltr" lang="zh">
-  <head>
-    <meta charset="utf-8">
-    <title>bill的主页</title>
-    <style type="text/css">
-        h1{
-            text-align: center;
-            font-size: 50px;
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人网站</title>
+    <!-- 引入Tailwind CSS（简化样式开发） -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- 自定义Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF', // 主色调
+                        secondary: '#6B7280', // 次要色调
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
         }
     </style>
-  </head>
-<body>
-    <h6>bill的主页</h6>  
-  <h1>这是一个AI平台</h1>
-<img border="0" src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt="Pulpit rock" width="304" height="228">
+</head>
+<body class="font-sans text-gray-800 antialiased">
+    <!-- 导航栏（滚动时固定+背景变化） -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white text-shadow">MyWebsite</a>
+            
+            <!-- 桌面端导航 -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-white hover:text-primary/90 transition-colors">首页</a>
+                <a href="#features" class="text-white hover:text-primary/90 transition-colors">功能</a>
+                <a href="#about" class="text-white hover:text-primary/90 transition-colors">关于我们</a>
+                <a href="#contact" class="text-white hover:text-primary/90 transition-colors">联系我们</a>
+            </div>
+            
+            <!-- 移动端汉堡菜单 -->
+            <button id="menuBtn" class="md:hidden text-white text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端菜单列表 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#home" class="text-gray-800 hover:text-primary transition-colors py-2">首页</a>
+                <a href="#features" class="text-gray-800 hover:text-primary transition-colors py-2">功能</a>
+                <a href="#about" class="text-gray-800 hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="#contact" class="text-gray-800 hover:text-primary transition-colors py-2">联系我们</a>
+            </div>
+        </div>
+    </nav>
 
-    <iframe src="https://bot.360.com"  width="100%" height="500px"></iframe>
+    <!-- 首页Banner -->
+    <section id="home" class="relative h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('https://picsum.photos/id/1076/1920/1080');">
+        <!-- 遮罩层 -->
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="container mx-auto px-4 md:px-8 relative z-10 text-center">
+            <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold text-white mb-6 text-shadow">
+                打造属于你的专属网站
+            </h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-white mb-8 max-w-2xl mx-auto">
+                简洁、美观、响应式，适配所有设备，满足你的个性化需求
+            </p>
+            <a href="#contact" class="inline-block bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-lg transition-all transform hover:scale-105">
+                立即联系
+            </a>
+        </div>
+        <!-- 向下滚动箭头 -->
+        <a href="#features" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white text-3xl animate-bounce">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- 功能介绍区 -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">核心功能</h2>
+                <p class="text-secondary max-w-2xl mx-auto">我们的网站具备以下核心功能，满足你的日常使用需求</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 功能卡片1 -->
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow p-8">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">响应式设计</h3>
+                    <p class="text-secondary">完美适配手机、平板、电脑等所有设备，无论何时何地都有最佳浏览体验。</p>
+                </div>
+                
+                <!-- 功能卡片2 -->
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow p-8">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-paint-brush text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">精美UI设计</h3>
+                    <p class="text-secondary">简约而不简单的设计风格，符合现代审美，提升品牌形象和用户体验。</p>
+                </div>
+                
+                <!-- 功能卡片3 -->
+                <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow p-8">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">易扩展</h3>
+                    <p class="text-secondary">模块化代码结构，可轻松添加新功能（如博客、表单、支付等），满足后续需求。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://picsum.photos/id/1048/800/600" alt="关于我们" class="rounded-xl shadow-lg w-full h-auto object-cover">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-6">关于我们</h2>
+                    <p class="text-secondary mb-4">
+                        我们是一支专注于网页开发的团队，致力于为个人和企业打造高质量、高性价比的网站。
+                    </p>
+                    <p class="text-secondary mb-6">
+                        从需求分析到设计开发，再到后期维护，我们提供一站式的网站建设服务，让你的想法快速落地。
+                    </p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span>专业的设计团队</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span>高效的开发流程</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-primary mr-3"></i>
+                            <span>7x24小时技术支持</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-gray-900 mb-4">联系我们</h2>
+                <p class="text-secondary max-w-2xl mx-auto">有任何问题或需求，欢迎随时联系我们，我们会尽快回复</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8 md:p-12">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请输入你的姓名" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请输入你的邮箱" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                        <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请输入咨询主题" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 font-medium mb-2">留言内容</label>
+                        <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary" placeholder="请输入你的留言内容" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-all transform hover:scale-[1.02]">
+                        提交留言
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">MyWebsite</h3>
+                    <p class="text-gray-400 mb-4">打造高质量的网站，助力你的事业发展</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-weixin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-weibo text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">功能</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系方式</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400"><i class="fas fa-map-marker-alt mr-3"></i> 北京市朝阳区某某大厦</li>
+                        <li class="flex items-center text-gray-400"><i class="fas fa-phone mr-3"></i> 138-0000-0000</li>
+                        <li class="flex items-center text-gray-400"><i class="fas fa-envelope mr-3"></i> contact@example.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">订阅更新</h4>
+                    <p class="text-gray-400 mb-4">订阅我们的新闻，及时了解最新动态</p>
+                    <div class="flex">
+                        <input type="email" placeholder="你的邮箱地址" class="flex-1 px-4 py-2 rounded-l-lg focus:outline-none text-gray-800">
+                        <button class="bg-primary hover:bg-primary/90 px-4 py-2 rounded-r-lg transition-colors">
+                            订阅
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>© 2025 MyWebsite. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+                // 改变导航文字颜色
+                const navLinks = navbar.querySelectorAll('a:not(.text-2xl)');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-gray-800');
+                });
+                // 改变logo颜色
+                navbar.querySelector('a.text-2xl').classList.remove('text-white');
+                navbar.querySelector('a.text-2xl').classList.add('text-primary');
+                // 改变汉堡菜单颜色
+                document.getElementById('menuBtn').classList.remove('text-white');
+                document.getElementById('menuBtn').classList.add('text-gray-800');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+                // 恢复导航文字颜色
+                const navLinks = navbar.querySelectorAll('a:not(.text-2xl)');
+                navLinks.forEach(link => {
+                    link.classList.add('text-white');
+                    link.classList.remove('text-gray-800');
+                });
+                // 恢复logo颜色
+                navbar.querySelector('a.text-2xl').classList.add('text-white');
+                navbar.querySelector('a.text-2xl').classList.remove('text-primary');
+                // 恢复汉堡菜单颜色
+                document.getElementById('menuBtn').classList.add('text-white');
+                document.getElementById('menuBtn').classList.remove('text-gray-800');
+            }
+        });
+
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // 切换汉堡/关闭图标
+            const icon = menuBtn.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                // 关闭移动端菜单
+                mobileMenu.classList.add('hidden');
+                menuBtn.querySelector('i').classList.remove('fa-times');
+                menuBtn.querySelector('i').classList.add('fa-bars');
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 表单提交
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // 简单的表单验证和提示
+            alert('留言提交成功！我们会尽快与你联系。');
+            e.target.reset();
+        });
+    </script>
 </body>
 </html>
